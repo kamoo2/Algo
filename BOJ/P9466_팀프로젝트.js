@@ -8,8 +8,7 @@ let line = 1;
 let ans = 0;
 for(let t=0;t<T;t++){
     const N = Number(input[line]);
-    const map = input[line+1].split(' ').map(Number);
-    map.unshift(0);
+    const map = [0,...input[line+1].split(' ').map(Number)];
     const visited = new Array(N+1).fill(0);
     const finished = new Array(N+1).fill(0);
     ans = 0;
