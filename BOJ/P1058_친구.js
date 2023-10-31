@@ -1,6 +1,6 @@
-const fs = require('fs');
+const fs = require("fs");
 
-const input = fs.readFileSync('/dev/stdin').toString().split('\n');
+const input = fs.readFileSync("/dev/stdin").toString().split("\n");
 
 // https://www.acmicpc.net/problem/1058
 /**
@@ -18,35 +18,35 @@ const INF = Number.MAX_SAFE_INTEGER;
 // map[N+1][N+1]인 그래프 만들기
 const map = [];
 
-for(let i=1;i<=N;i++){
-    map[i] = [0,...new Array(N).fill(INF)];
+for (let i = 1; i <= N; i++) {
+  map[i] = [0, ...new Array(N).fill(INF)];
 
-    const line = [0,...input[i].split('')];
+  const line = [0, ...input[i].split("")];
 
-    for(let j=1;j<=N;j++){
-        if(line[j] === 'Y') map[i][j] = 1;
-    }
+  for (let j = 1; j <= N; j++) {
+    if (line[j] === "Y") map[i][j] = 1;
+  }
 }
 
-for(let i=1;i<=N;i++)map[i][i] = 0;
+for (let i = 1; i <= N; i++) map[i][i] = 0;
 
-const two = new Array(N+1).fill(0);
+const two = new Array(N + 1).fill(0);
 
 // 플로이드 워셜 알고리즘을 이용해 노드 사이의 최단 거리를 계산
-for(let k=1;k<=N;k++){
-    for(let a=1;a<=N;a++){
-        for(let b=1;b<=N;b++){
-            const cost = map[a][k] + map[k][b];
-            map[a][b] = Math.min(map[a][b],cost);
-        }
+for (let k = 1; k <= N; k++) {
+  for (let a = 1; a <= N; a++) {
+    for (let b = 1; b <= N; b++) {
+      const cost = map[a][k] + map[k][b];
+      map[a][b] = Math.min(map[a][b], cost);
     }
+  }
 }
 
 // 노드 별 최단 거리가 2이하인 개수를 계산
-for(let i=1;i<=N;i++){
-    for(let j=1;j<=N;j++){
-        if(i === j) continue;
-        if(map[i][j] <= 2)two[i]++;
-    }
+for (let i = 1; i <= N; i++) {
+  for (let j = 1; j <= N; j++) {
+    if (i === j) continue;
+    if (map[i][j] <= 2) two[i]++;
+  }
 }
-console.log(two.reduce((a,b)=>Math.max(a,b),0));
+console.log(two.reduce((a, b) => Math.max(a, b), 0));
