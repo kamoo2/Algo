@@ -13,4 +13,4 @@ const bubbleSort = (originArr) => {
 
 const data = [6,3,9,3,2,7,6,4,1];
 
-console.log(`bubbleSort : ${bubbleSort()}`)
+console.log(`Bubble Sort : ${bubbleSort(data)}`)
