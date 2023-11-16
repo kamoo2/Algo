@@ -4,24 +4,23 @@
 // 그래서 현재 비교해야할 값의 왼쪽은 다 정렬이 된 상태라는 점이 특징입니다.
 // 시간 복잡도는 O(n^2)입니다.
 
-function insertSort(arr) {
-    const nArr = [...arr];
-    const len = nArr.length;
-  
-    for (let i = 1; i < len; i++) {
-      const cur = nArr[i];
-      let left = i - 1;
-  
-      while (left >= 0 && nArr[left] > cur) {
-        nArr[left + 1] = nArr[left];
-        left--;
-      }
-      nArr[left + 1] = cur;
+function insertSort(originArr) {
+  const arr = [...originArr];
+  const len = arr.length;
+
+  for (let i = 1; i < len; i++) {
+    const cur = arr[i];
+    let left = i - 1;
+
+    while (left >= 0 && arr[left] > cur) {
+      arr[left + 1] = arr[left];
+      left--;
     }
-    return nArr;
+    arr[left + 1] = cur;
   }
-  
+  return arr;
+}
 
-const data = [6,3,9,3,2,7,6,4,1];
+const data = [6, 3, 9, 3, 2, 7, 6, 4, 1];
 
-console.log(`Insert Sort : ${insertSort(data)}`)  
+console.log(`Insert Sort : ${insertSort(data)}`);
